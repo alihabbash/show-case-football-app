@@ -3,7 +3,7 @@ import 'package:football/core/app/app_module.dart';
 import 'package:football/features/home/home_screen.dart';
 
 class HomeModule extends Module {
-  static const matchDetailsPath = '${AppModule.homePath}/matchDetails';
+  static const matchDetailsPath = '/matchDetails';
 
   @override
   List<Bind<Object>> get binds => [];
@@ -11,7 +11,7 @@ class HomeModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(
-          AppModule.homePath,
+          Modular.initialRoute,
           child: (context, args) => const HomeScreen(),
         ),
       ];
