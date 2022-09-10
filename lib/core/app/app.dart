@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:football/core/utils/consts.dart';
 
 import '../theme/custom_app_theme.dart';
 
@@ -12,7 +13,7 @@ class App extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       builder: (BuildContext context, Widget? child) => MaterialApp.router(
-        title: 'Football',
+        title: Consts.appName,
         theme: CustomAppTheme.lightTheme(),
         debugShowCheckedModeBanner: false,
         routerDelegate: Modular.routerDelegate,
