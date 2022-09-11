@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:football/core/app/app_module.dart';
-import 'package:football/features/home/home_screen.dart';
+import 'package:football/features/home/presentation/screen/home_screen.dart';
 
 class HomeModule extends Module {
   static const matchDetailsPath = '/matchDetails';

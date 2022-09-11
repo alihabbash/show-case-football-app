@@ -18,7 +18,8 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<dynamic> getFixtures({required leagueId, required season}) async {
+  Future<FixturesModel> getFixtures(
+      {required leagueId, required season}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'league': leagueId,
@@ -26,12 +27,13 @@ class _RestClient implements RestClient {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch(_setStreamType<dynamic>(
-        Options(method: 'GET', headers: _headers, extra: _extra)
-            .compose(_dio.options, 'fixtures/',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<FixturesModel>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'fixtures/',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = FixturesModel.fromJson(_result.data!);
     return value;
   }
 
