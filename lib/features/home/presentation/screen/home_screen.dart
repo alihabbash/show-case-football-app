@@ -27,15 +27,16 @@ class _HomeScreenState extends State<HomeScreen>
       length: 2,
       vsync: this,
     );
-    // Modular.get<HomeBloc>().add(GetAllFixturesEvent(
-    //   leagueId: 850,
-    //   season: 2023,
-    // ));
+    Modular.get<HomeBloc>().add(GetAllFixturesEvent(
+      leagueId: 850,
+      season: 2023,
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         title: Text(

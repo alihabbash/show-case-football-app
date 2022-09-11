@@ -28,6 +28,17 @@ class TeamDetailsModel {
     this.logo,
   });
 
+  String? get readableName {
+    if (name == null) {
+      return null;
+    }
+    if (name!.contains('U21')) {
+      return name!.split('U21').first;
+    }
+
+    return name;
+  }
+
   factory TeamDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$TeamDetailsModelFromJson(json);
 
