@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'fixture_details_model.g.dart';
@@ -17,6 +18,14 @@ class FixtureDetailsModel {
     this.venue,
     this.status,
   });
+
+  bool get isFinished => date != null ? DateTime.now().isAfter(date!) : false;
+
+  String get readableDate =>
+      date != null ? DateFormat('dd-MM-yyyy').format(date!) : 'No date';
+
+  String get readableTime =>
+      date != null ? DateFormat('HH:mm').format(date!) : 'No time';
 
   factory FixtureDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$FixtureDetailsModelFromJson(json);
