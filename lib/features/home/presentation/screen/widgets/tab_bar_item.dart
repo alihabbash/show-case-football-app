@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TabBarItem extends StatelessWidget {
-  const TabBarItem({Key? key}) : super(key: key);
+  const TabBarItem({
+    required this.title,
+    Key? key,
+  }) : super(key: key);
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +16,7 @@ class TabBarItem extends StatelessWidget {
         horizontal: 8.w,
         vertical: 16.h,
       ),
-      child: const Text('Upcoming games'),
+      child: Text(title),
     );
   }
 }

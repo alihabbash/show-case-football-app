@@ -49,8 +49,8 @@ class _HomeScreenState extends State<HomeScreen>
           indicatorWeight: 2,
           indicatorColor: Colors.black,
           tabs: const [
-            TabBarItem(),
-            TabBarItem(),
+            TabBarItem(title: 'Upcoming games'),
+            TabBarItem(title: 'Finished games'),
           ],
         ),
       ),
