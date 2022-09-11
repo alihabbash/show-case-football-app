@@ -3,5 +3,8 @@ import 'package:football/core/entities/error_entity.dart';
 import 'package:football/features/home/domain/entity/fixtures_entity.dart';
 
 abstract class IHomeRepository {
-  Future<Either<ErrorEntity, FixturesEntity>> getAllFixtures();
+  Future<Either<ErrorEntity, FixturesEntity>> getAllFixtures({
+    required int leagueId,
+    required int season,
+  });
 }
