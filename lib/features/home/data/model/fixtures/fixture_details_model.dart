@@ -18,6 +18,8 @@ class FixtureDetailsModel {
     this.status,
   });
 
+  bool get isFinished => date != null ? DateTime.now().isAfter(date!) : false;
+
   factory FixtureDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$FixtureDetailsModelFromJson(json);
 
@@ -51,8 +53,6 @@ class StatusModel {
     this.short,
     this.elapsed,
   });
-
-  bool get isFinished => short == 'FT' || short == 'AET' || short == 'PEN';
 
   factory StatusModel.fromJson(Map<String, dynamic> json) =>
       _$StatusModelFromJson(json);

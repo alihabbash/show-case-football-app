@@ -21,12 +21,12 @@ class HomeRepository extends IHomeRepository {
           await _restClient.getFixtures(leagueId: leagueId, season: season);
       final finishedMatches = res.response
           .where(
-              (element) => element.fixtureDetails?.status?.isFinished ?? false)
+              (element) => element.fixtureDetails?.isFinished ?? false)
           .toList();
 
       final upcomingMatches = res.response
           .where((element) =>
-              !(element.fixtureDetails?.status?.isFinished ?? false))
+              !(element.fixtureDetails?.isFinished ?? false))
           .toList();
 
       final entity = FixturesEntity(
