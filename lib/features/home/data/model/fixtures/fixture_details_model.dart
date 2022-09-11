@@ -52,6 +52,8 @@ class StatusModel {
     this.elapsed,
   });
 
+  bool get isFinished => short == 'FT' || short == 'AET' || short == 'PEN';
+
   factory StatusModel.fromJson(Map<String, dynamic> json) =>
       _$StatusModelFromJson(json);
 

@@ -1,7 +1,11 @@
+import 'package:football/features/home/data/model/fixtures/fixture_item_model.dart';
 import 'package:football/features/home/data/model/fixtures/fixtures_model.dart';
 
 class FixturesEntity {
-  final FixturesModel model;
+  final List<FixtureItemModel> finishedMatches, upcomingMatches;
 
-  FixturesEntity(this.model);
+  FixturesEntity({
+    required this.finishedMatches,
+    required this.upcomingMatches,
+  });
 }
