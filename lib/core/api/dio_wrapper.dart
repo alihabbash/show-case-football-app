@@ -19,7 +19,6 @@ class DioWrapper {
       ..options.headers.addAll({
         ApiKeys.authHeader: ApiConst.apiKey,
       });
-    dioClient.interceptors.add(_requestsInterceptor);
     dioClient.interceptors.add(_loggingInterceptor);
     // dioClient.interceptors.add(_cacheInterceptor);
   }
@@ -30,22 +29,6 @@ class DioWrapper {
         responseBody: true,
         requestBody: true,
         logPrint: Logger().i,
-      );
-
-  InterceptorsWrapper get _requestsInterceptor => InterceptorsWrapper(
-        onError: (e, handler) {
-          if (e.response == null) {
-            throw NoInternetException();
-          }
-          if (e.response!.statusCode == 403) {
-            throw UnauthorisedException();
-          }
-          if (e.response!.statusCode == 499 || e.response!.statusCode == 500) {
-            throw BadRequestException();
-          }
-          throw FetchDataException();
-          // handler.next(e);
-        },
       );
 
 // DioCacheInterceptor get _cacheInterceptor {

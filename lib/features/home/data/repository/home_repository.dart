@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:football/core/api/rest_client.dart';
 import 'package:football/core/entities/error_entity.dart';
 import 'package:football/core/exceptions/app_exceptions.dart';
@@ -20,13 +21,11 @@ class HomeRepository extends IHomeRepository {
       final res =
           await _restClient.getFixtures(leagueId: leagueId, season: season);
       final finishedMatches = res.response
-          .where(
-              (element) => element.fixtureDetails?.isFinished ?? false)
+          .where((element) => element.fixtureDetails?.isFinished ?? false)
           .toList();
 
       final upcomingMatches = res.response
-          .where((element) =>
-              !(element.fixtureDetails?.isFinished ?? false))
+          .where((element) => !(element.fixtureDetails?.isFinished ?? false))
           .toList();
 
       final entity = FixturesEntity(
@@ -34,9 +33,9 @@ class HomeRepository extends IHomeRepository {
         upcomingMatches: upcomingMatches,
       );
       return Right(entity);
-    } on AppException catch (e) {
+    } on DioError catch (e) {
       Logger().e(e);
-      return Left(ErrorEntity.fromException(e));
+      return Left(ErrorEntity.fromException(e.convertToAppException()));
     }
   }
 }

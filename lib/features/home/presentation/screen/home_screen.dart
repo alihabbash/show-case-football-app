@@ -54,18 +54,24 @@ class _HomeScreenState extends State<HomeScreen>
           ],
         ),
       ),
-      body: BlocListener<HomeBloc, HomeState>(
+      body: BlocConsumer<HomeBloc, HomeState>(
         bloc: Modular.get(),
         listener: _homeStateListener,
-        child: TabBarView(
-          controller: _controller,
-          children: const [
-            // Upcoming games
-            GamesList(),
-            // Finished games
-            GamesList(),
-          ],
-        ),
+        builder: (ctx, state) => state is AllFixturesLoaded
+            ? TabBarView(
+                controller: _controller,
+                children: [
+                  // Upcoming games
+                  GamesList(games: state.entity.upcomingMatches),
+                  // Finished games
+                  GamesList(games: state.entity.finishedMatches),
+                ],
+              )
+            : state is AllFixturesLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : const SizedBox.shrink(),
       ),
     );
   }

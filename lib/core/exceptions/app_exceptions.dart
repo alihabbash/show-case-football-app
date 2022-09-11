@@ -1,3 +1,6 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
 class AppException implements Exception {
   final String? _message;
 
@@ -58,4 +61,24 @@ class CacheException extends AppException {
 class SessionTimedOutException extends AppException {
   SessionTimedOutException({String? message, data})
       : super(data, message = 'Session Timed Out');
+}
+
+extension ExceptionExten on DioError {
+  AppException convertToAppException() {
+    switch (type) {
+      case DioErrorType.connectTimeout:
+      case DioErrorType.sendTimeout:
+      case DioErrorType.receiveTimeout:
+        return NoInternetException();
+      case DioErrorType.response:
+        if (response?.statusCode == 403) {
+          return UnauthorisedException();
+        } else {
+          return BadRequestException();
+        }
+      case DioErrorType.cancel:
+      case DioErrorType.other:
+        return FetchDataException();
+    }
+  }
 }
