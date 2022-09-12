@@ -20,6 +20,7 @@ class _GamesListState extends State<GamesList> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      physics: const BouncingScrollPhysics(),
       padding: EdgeInsets.all(8.r),
       itemBuilder: _itemBuilder,
       separatorBuilder: _separatorBuilder,

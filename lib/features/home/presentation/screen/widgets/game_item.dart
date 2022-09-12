@@ -61,7 +61,7 @@ class GameItem extends StatelessWidget {
                         if (!isUpcoming) SizedBox(width: 4.w),
                         if (!isUpcoming)
                           Text(
-                            game.goals?.home?.toString() ?? '-',
+                            game.goals?.away?.toString() ?? '-',
                             style: Theme.of(context).textTheme.headline2,
                           ),
                       ],
